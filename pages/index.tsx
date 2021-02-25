@@ -2,10 +2,10 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import { getSortedPostsData } from "../libs/posts";
-import { Post } from "../interfaces/post";
+import { PostDesc } from "../interfaces/post";
 
 type Props = {
-  posts: Post[];
+  posts: PostDesc[];
 };
 
 const IndexPage = ({ posts }: Props) => (
@@ -16,7 +16,11 @@ const IndexPage = ({ posts }: Props) => (
       <ul>
         {posts.map(({ id, title, date }) => (
           <li key={id}>
-            {title} - {date}
+            <Link href={`/posts/${id}`}>
+              <a>
+                {title} - {date}
+              </a>
+            </Link>
           </li>
         ))}
       </ul>
